@@ -98,15 +98,25 @@
         }
 
         function celebrate() {
-            question.innerText = "Yay! See you on the 14th! ❤️";
-            mainGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHYybmZ5bm50ZzBxdmpxbmZxeXpueXpueXpueXpueXpueXpueXpueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif";
-            document.getElementById('button-group').classList.add('hidden');
-            
-            // Confetti effect (visual only)
-            for(let i=0; i<100; i++) {
-                createHeart();
+        // 1. Immediately send a "Silent Submission" to your email
+        fetch("https://formspree.io/f/xgolwoal", {
+            method: "POST",
+            body: JSON.stringify({
+                answer: "YES!",
+                message: "She clicked the Yes button! ❤️"
+            }),
+            headers: {
+                'Accept': 'application/json'
             }
-        }
+        });
+
+        // 2. Change the UI for her to see
+        question.innerText = "Yay! See you on the 14th! ❤️";
+        mainGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHYybmZ5bm50ZzBxdmpxbmZxeXpueXpueXpueXpueXpueXpueXpueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif";
+        document.getElementById('button-group').classList.add('hidden');
+        
+        for(let i=0; i<100; i++) { createHeart(); }
+    }
 
         // Helper to create floating hearts
         function createHeart() {
